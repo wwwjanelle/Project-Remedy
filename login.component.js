@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import GoogleLoginComponent from "./googlebutton.component";
+
 
 export default class Login extends Component {
     render() {
@@ -27,6 +29,12 @@ export default class Login extends Component {
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
+
+                <div className="App container">
+                    <GoogleLoginComponent />
+                </div>
+
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in with Facebook</button>
             </form>
         );
     }
