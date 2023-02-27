@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GoogleLoginComponent from "./googlebutton.component";
 
 export default class SignUp extends Component {
     render() {
@@ -47,6 +48,10 @@ export default class SignUp extends Component {
                 <p className="forgot-password text-right">
                     Already registered <a href="#">log in?</a>
                 </p>
+
+                <div className="App container">
+                    <GoogleLoginComponent />
+                </div>
             </form>
         );
     }
