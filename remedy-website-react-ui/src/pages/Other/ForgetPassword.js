@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../App.css";
-import { Button } from "@mui/material";
-import { Link } from 'react-router-dom';
+// import { Button } from "@mui/material";
+// import { Link } from 'react-router-dom';
 
 export default class ForgetPaswword extends Component {
     render() {

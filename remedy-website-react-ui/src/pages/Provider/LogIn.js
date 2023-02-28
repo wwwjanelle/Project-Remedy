@@ -1,25 +1,95 @@
-import React, { Component } from "react";
+
+import React, { Component, useState } from "react";
+import { Link, useNavigate} from 'react-router-dom';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from '../../firebase.js';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import "../../App.css";
 
-export default class LogIn extends Component {
-    render() {
+const LogIn = ({setShouldShowSignIn}) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [hospitalID, setHospitalID] = useState("");
+    const [signInError, setSignInError] = useState(null);
+    const genericError = "An  error occurred while signing you in, please try again.";
+    const [name, setName] = useState("");
+    const history = useNavigate();
+    const [signUpError, setSignUpError] = useState(null);
+  
+  
+    const doSignIn = () => {
+      setSignInError(null);
+      if (!email  || !password || !hospitalID) {return;}
+      auth.signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+          let displayMessage = genericError;
+          if(errorCode === "auth/wrong-password" || errorCode === "auth/user-not-found") {
+               displayMessage = "Incorrect Username or Password";
+          }
+          else if(errorCode === "auth/invalid-email") {
+              displayMessage = "Invalid email address";
+          }
+          setSignInError(displayMessage);
+      });
+    } 
+  
+    const doSignUp = () => {
+      setSignUpError(null);
+      if (!email  || !password || !name) {return;}
+      auth.createUserWithEmailAndPassword(email, password)
+          .then((result) => {
+              result.user.updateProfile({
+                  displayName: name
+              }).then(() => {
+              }, (e) => {
+                  setSignUpError(genericError);
+                  console.log(e)
+          });     
+          })
+          .catch((e) => {
+          let displayMessage = genericError;
+          if (e.code === 'auth/email-already-in-use'){
+              displayMessage = "Email address already in use";
+          }
+          setSignUpError(displayMessage);
+          console.log(e)
+      });
+    }
+  
+    const doGoogleSignUp = () => {
+      setSignUpError(null);
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+      }).catch((error) => {
+        console.log(error);
+        setSignUpError(genericError);
+      });
+  }
+  
         return (
             <form>
                 <h3>Log In</h3>
 
                 <div className="form-group">
                     <label>Hospital ID #</label>
-                    <input type="hospitalID" className="form-control" placedholder="Enter hospital ID" />
+                    <TextField label="Enter your Hospital ID" className="form-control" variant="outlined" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="email" className="form-control" placedholder="Enter email" />
+                    <TextField label="Email address" className="form-control" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placedholder="Enter password" />
+                    <TextField label="Password" className="form-control" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
                 <div className="form-group">
@@ -28,16 +98,20 @@ export default class LogIn extends Component {
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
+                
+                {/* <div className="signin-box" onSubmit={(e) => {doSignUp(e)}}></div> */}
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block"><a href="/survey">Sign In</a></button>
+                <Button variant="outlined" href="/survey" onClick={doSignIn}><b>Log In</b></Button>
                 
                 <p className="forgot-password text-right">
                     Forgot <a href="/forgot-password">password?</a>
                 </p>
                 <p className="forgot-password text-right">
-                    Don't have an account?: <a href="/provider/signup">Sign up here</a>
+                    Don't have an account?: 
+                    <Button variant="outlined" onClick={(e) => {e.preventDefault();history("/provider/signup"); setShouldShowSignIn(false);}}><b>Sign up here</b></Button>
                 </p>
             </form>
         );
-    }
-}
+    };
+
+export default LogIn;
