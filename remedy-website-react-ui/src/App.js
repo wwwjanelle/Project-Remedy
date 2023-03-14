@@ -23,6 +23,9 @@ function App() {
             <Link className="navbar-brand" to={'/'}>
               Remedy
             </Link>
+            {/* <Link className="navbar-brand" to={'/survey'}>
+              Log out
+            </Link> */}
             <div className="collaspe navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 {/* <li className="nav-item">
