@@ -40,7 +40,7 @@ const LogIn = ({setShouldShowSignIn}) => {
             }
             setSignInError(displayMessage);
         });
-      } 
+    } 
     
     const doGoogleSignUp = () => {
         setSignUpError(null);
@@ -58,18 +58,18 @@ const LogIn = ({setShouldShowSignIn}) => {
         <form>
             <h3>Log In</h3>
             {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
+            <Button>
+            <Link 
+            style={{ marginBottom: 30 }} 
+            to="/provider/login" >
+            {currentUser ? <b>Account: {auth.currentUser.displayName}</b> : <b>Log In</b> }
+            </Link></Button>
 
             <div className="form-group">
                 <label>Hospital ID #</label>
                 <TextField label="Enter your Hospital ID" className="form-control" variant="outlined" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} />
             </div>
 
-            {/* <Button>
-            <Link 
-            style={{ marginBottom: 30 }} 
-            to="/provider/login" >
-            {currentUser ? <b>Account: {auth.currentUser.displayName}</b> : <b>Log In</b> }
-            </Link></Button> */}
 
             <div className="form-group">
                 <label>Email</label>
@@ -89,10 +89,9 @@ const LogIn = ({setShouldShowSignIn}) => {
             </div>
 
             <Button variant="outlined" href="/survey" onClick={doSignIn}><b>Log In</b></Button>
-
-            <Button variant="outlined" onClick={doGoogleSignUp}><b>Sign In with Google</b></Button>
+            <Button variant="outlined" to="/dashboard" onClick={doGoogleSignUp}><b>Sign In with Google</b></Button>
             <Button variant="outlined" href="/" onClick={() => auth.signOut()}><b>Log Out</b></Button>
-            
+
             <p className="forgot-password text-right">
                 Forgot <a href="/forgot-password">password?</a>
             </p>

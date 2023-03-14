@@ -12,7 +12,7 @@ import Login from "./pages/Patient/Login";
 import Signup from "./pages/Patient/Signup";
 import Survey from "./pages/Other/Survey";
 import ForgetPassword from "./pages/Other/ForgetPassword";
-
+import Dashboard from './pages/Other/Dashboard';
 
 function App() {
   return (
@@ -23,26 +23,8 @@ function App() {
             <Link className="navbar-brand" to={'/'}>
               Remedy
             </Link>
-            {/* <Link className="navbar-brand" to={'/survey'}>
-              Log out
-            </Link> */}
             <div className="collaspe navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to={'/sign-in'}>
-                    Log in
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={'/sign-up'}>
-                    Register
-                  </Link>
-                </li> */}
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to={'/home-page'}>
-                  Home Page 
-                  </Link>
-                </li> */}
               </ul>
             </div>
           </div>
@@ -52,7 +34,7 @@ function App() {
         <div className='inner'>
           <Routes>
             <Route exact path='/' element={<HomePage />} /> 
-            {/* <Route path='/remedy' element={<Provider />} /> */}
+            {/* <Route path='/remedy' element={<?? />} /> */}
             <Route path='/provider' element={<Provider />} />
             <Route path='/provider/login' element={<LogIn />} />
             <Route path='/provider/signup' element={<SignUp />} />
@@ -61,6 +43,7 @@ function App() {
             <Route path='/patient/signup' element={<Signup />} />
             <Route path='/survey' element={<Survey />} /> 
             <Route path='/forgot-password' element={<ForgetPassword />} /> 
+            <Route path='/dashboard' element={<Dashboard />} /> 
             <Route
               path="*"
               element={
