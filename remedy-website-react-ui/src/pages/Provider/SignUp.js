@@ -23,7 +23,6 @@ const SignUp = ({setShouldShowSignIn}) => {
     const doSignUp = () => {
         setSignUpError(null);
         if (!email  || !password || !name || !hospitalID || !phoneNum || !confirmPass ) {
-            // {error && <ErrorMessage>Please fill all the fields</ErrorMessage>}
             setError(true);
             return;
         } else if (password !== confirmPass) {
@@ -54,13 +53,13 @@ const SignUp = ({setShouldShowSignIn}) => {
 
     return (
         <form>
-            <h3>Register</h3>
+            <h3>Provider Registration</h3>
 
             <div className="signup-box" onSubmit={(e) => {doSignUp(e)}}>
             {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
             {error && <ErrorMessage>Please fill all the fields</ErrorMessage>}
               
-            <div className="form-group">
+                <div className="form-group">
                     <label>Full Name</label>
                     <TextField label="Full Name" className="form-control" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>

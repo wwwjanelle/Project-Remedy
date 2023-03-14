@@ -12,7 +12,6 @@ const LogIn = ({setShouldShowSignIn}) => {
     const [hospitalID, setHospitalID] = useState("");
     const [signInError, setSignInError] = useState(null);
     const genericError = "An  error occurred while signing you in, please try again.";
-    const [name, setName] = useState("");
     const history = useNavigate();
     const [signUpError, setSignUpError] = useState(null);
     const [currentUser, setCurrentUser] = useState();
@@ -58,12 +57,13 @@ const LogIn = ({setShouldShowSignIn}) => {
         <form>
             <h3>Log In</h3>
             {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
-            <Button>
+            
+            {/* <Button>
             <Link 
             style={{ marginBottom: 30 }} 
             to="/provider/login" >
             {currentUser ? <b>Account: {auth.currentUser.displayName}</b> : <b>Log In</b> }
-            </Link></Button>
+            </Link></Button> */}
 
             <div className="form-group">
                 <label>Hospital ID #</label>
@@ -90,6 +90,7 @@ const LogIn = ({setShouldShowSignIn}) => {
 
             <Button variant="outlined" href="/survey" onClick={doSignIn}><b>Log In</b></Button>
             <Button variant="outlined" to="/dashboard" onClick={doGoogleSignUp}><b>Sign In with Google</b></Button>
+            {/* DOES NOT REDIRECT even with href */}
             <Button variant="outlined" href="/" onClick={() => auth.signOut()}><b>Log Out</b></Button>
 
             <p className="forgot-password text-right">
