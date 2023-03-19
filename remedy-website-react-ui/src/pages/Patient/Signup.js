@@ -1,6 +1,6 @@
-import React, {Component, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase.js';
+import { auth, db } from '../../firebase.js';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -16,6 +16,7 @@ const Signup = ({setShouldShowSignIn}) => {
     const [signUpError, setSignUpError] = useState(null);
     const history = useNavigate();
     const [error, setError] = useState(false);
+    const [loader, setLoader] = useState(false);
       
     const genericError = "An  error occurred while signing you up, please try again.";
     const matchPasswords = "Please make sure that your confirmed password matches!";
@@ -49,35 +50,73 @@ const Signup = ({setShouldShowSignIn}) => {
             setSignUpError(displayMessage);
             console.log(e)
         });
-      }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoader(true);
+    
+        db.collection("patUserInfo")
+          .add({
+            fullName: name,
+            email: email,
+            insurance: insurance,
+            phoneNum: phoneNum
+          })
+          .then(() => {
+            setLoader(false);
+            alert("Your message has been submitted👍");
+          })
+          .catch((error) => {
+            alert(error.message);
+            setLoader(false);
+          });
+    
+        setName("");
+        setEmail("");
+        setInsurance("");
+        setPhoneNum("");
+    };
 
     return (
-        <form>
+        <form className="form" onSubmit={handleSubmit}>
             <h3>Patient Registration</h3>
 
             <div className="signup-box" onSubmit={(e) => {doSignUp(e)}}>
             {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
             {error && <ErrorMessage>Please fill all the fields</ErrorMessage>}
-              
-            <div className="form-group">
-                    <label>Full Name</label>
-                    <TextField label="Full Name" className="form-control" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <TextField label="Email address" className="form-control"  variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
+                <label>Full Name</label>
+                <div>
+                <input
+                    placeholder="Full Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                /></div>
 
-                <div className="form-group">
-                    <label>Insurance Company</label>
-                    <TextField label="Insurance Company" className="form-control" variant="outlined" value={insurance} onChange={(e) => setInsurance(e.target.value)} />
-                </div>
+                <label>Email</label>
+                <div>
+                <input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                /></div>
 
-                <div className="form-group">
-                    <label>Phone Number</label>
-                    <TextField label="Enter a valid US phone number" className="form-control" variant="outlined" value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} />
-                </div>
+                <label>Insurance Company</label>
+                <div>
+                <input
+                    placeholder="Insurance Company"
+                    value={insurance} 
+                    onChange={(e) => setInsurance(e.target.value)}
+                /></div>
+
+                <label>Phone Number</label>
+                <div>
+                <input
+                    placeholder="Phone Number"
+                    value={phoneNum} 
+                    onChange={(e) => setPhoneNum(e.target.value)}
+                /></div>
 
                 <div className="form-group">
                     <label>Password (at least 6 characters)</label>
@@ -97,8 +136,14 @@ const Signup = ({setShouldShowSignIn}) => {
                 </div>
 
             
-              <Button variant="outlined" href="/survey" onClick={doSignUp}><b>Register</b></Button>
-              {/* DOES NOT REDIRECT */}
+                <button
+                    type="submit"
+                    style={{ background: loader ? "#ccc" : " rgb(225, 225, 225)" }}
+                    onClick={doSignUp}
+                    to="/survey">
+                    Register
+                </button>
+                {/* DOES NOT REDIRECT even with href */}
             </div>
 
             <p className="forgot-password text-right">

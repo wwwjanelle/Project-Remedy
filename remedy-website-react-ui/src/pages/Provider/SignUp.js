@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase.js';
+import { auth, db } from '../../firebase.js';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -16,6 +16,7 @@ const SignUp = ({setShouldShowSignIn}) => {
     const [signUpError, setSignUpError] = useState(null);
     const history = useNavigate();
     const [error, setError] = useState(false);
+    const [loader, setLoader] = useState(false);
       
     const genericError = "An  error occurred while signing you up, please try again.";
     const matchPasswords = "Please make sure that your confirmed password matches!";
@@ -51,33 +52,71 @@ const SignUp = ({setShouldShowSignIn}) => {
         });
       }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoader(true);
+    
+        db.collection("proUserInfo")
+          .add({
+            fullName: name,
+            email: email,
+            hospitalID: hospitalID,
+            phoneNum: phoneNum
+          })
+          .then(() => {
+            setLoader(false);
+            alert("Your message has been submitted👍");
+          })
+          .catch((error) => {
+            alert(error.message);
+            setLoader(false);
+          });
+    
+        setName("");
+        setEmail("");
+        setHospitalID("");
+        setPhoneNum("");
+    };
+
     return (
-        <form>
+        <form className="form" onSubmit={handleSubmit}>
             <h3>Provider Registration</h3>
 
             <div className="signup-box" onSubmit={(e) => {doSignUp(e)}}>
             {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
             {error && <ErrorMessage>Please fill all the fields</ErrorMessage>}
-              
-                <div className="form-group">
-                    <label>Full Name</label>
-                    <TextField label="Full Name" className="form-control" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <TextField label="Email address" className="form-control"  variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
+                <label>Full Name</label>
+                <div>
+                <input
+                    placeholder="Full Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                /></div>
 
-                <div className="form-group">
-                    <label>Hospital ID #</label>
-                    <TextField label="Enter your Hospital ID" className="form-control" variant="outlined" value={hospitalID} onChange={(e) => setHospitalID(e.target.value)} />
-                </div>
+                <label>Email</label>
+                <div>
+                <input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                /></div>
 
-                <div className="form-group">
-                    <label>Phone Number</label>
-                    <TextField label="Enter a valid US phone number" className="form-control" variant="outlined" value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} />
-                </div>
+                <label>Hospital ID</label>
+                <div>
+                <input
+                    placeholder="Hospital ID"
+                    value={hospitalID}
+                    onChange={(e) => setHospitalID(e.target.value)}
+                /></div>
+
+                <label>Phone Number</label>
+                <div>
+                <input
+                    placeholder="Phone Number"
+                    value={phoneNum} 
+                    onChange={(e) => setPhoneNum(e.target.value)}
+                /></div>
 
                 <div className="form-group">
                     <label>Password (at least 6 characters)</label>
@@ -95,9 +134,16 @@ const SignUp = ({setShouldShowSignIn}) => {
                         <label className="custom-control-label" htmlFor="customCheck1">I agree to the terms and conditions</label>
                     </div>
                 </div>
+                
+                <button
+                    type="submit"
+                    style={{ background: loader ? "#ccc" : " rgb(225, 225, 225)" }}
+                    onClick={doSignUp}
+                    to="/survey">
+                    Register
+                </button>
+                {/* DOES NOT REDIRECT even with href */}
 
-            
-              <Button variant="outlined" to="/survey" onClick={doSignUp}><b>Register</b></Button>
             </div>
 
             <p className="forgot-password text-right">
