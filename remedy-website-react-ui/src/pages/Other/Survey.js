@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../App.css";
 // import { Button } from "@mui/material";
 // import { Link } from 'react-router-dom';
 
-export default class Survey extends Component {
-    render() {
-        return (
-            <form>
-                <h3>Survey</h3>
+const Survey = () => {
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">?..</button>
+    return (
+        <form>
+            <h3>Survey</h3>
 
-            </form>
-        );
-    }
-}
+            <p>patient sees past surveys...</p>
+
+        </form>
+    );
+};
+
+export default Survey;

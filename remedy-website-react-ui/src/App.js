@@ -34,7 +34,6 @@ function App() {
         <div className='inner'>
           <Routes>
             <Route exact path='/' element={<HomePage />} /> 
-            {/* <Route path='/remedy' element={<?? />} /> */}
             <Route path='/provider' element={<Provider />} />
             <Route path='/provider/login' element={<LogIn />} />
             <Route path='/provider/signup' element={<SignUp />} />

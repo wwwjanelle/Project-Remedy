@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import axios from "axios";
 import "../../App.css";
 // import { Button } from "@mui/material";
@@ -6,8 +6,6 @@ import "../../App.css";
 
 
 const Dashboard = () => {
-
-    const [profileData, setProfileData] = useState(null)
 
     function getData() {
         axios({
@@ -20,7 +18,7 @@ const Dashboard = () => {
             <form>
             <h3>Dashboard</h3>
 
-            <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={getData}>Send a survey request to a patient</button>
+            <button type="submit" className="btn btn-dark btn-sm btn-block" onClick={getData}>Send a survey request to a patient</button>
             <p>^ this is the automated email button</p>
         </form>
     );
