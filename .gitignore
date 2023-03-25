@@ -1,1 +1,3 @@
 .DS_Store
+remedy-website-react-ui/flaskApp/env
+remedy-website-react-ui/flaskApp/__pycache__
