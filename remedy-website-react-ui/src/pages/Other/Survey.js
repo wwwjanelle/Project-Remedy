@@ -1,18 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 import "../../App.css";
 // import { Button } from "@mui/material";
 // import { Link } from 'react-router-dom';
 
-const Survey = () => {
+export default class Survey extends Component {
+    render() {
+        var user = JSON.parse(localStorage.getItem('user'));
+        
+        return (
+            <form>
 
-    return (
-        <form>
-            <h3>Survey</h3>
+                <h2>Hello, { user } </h2>
 
-            <p>patient sees past surveys...</p>
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Home </button>
+                <button type="submit" className="btn btn-dark btn-lg btn-block">New Survey</button>
+                <button type="submit" className="btn btn-dark btn-lg btn-block">My Account</button>
 
-        </form>
-    );
-};
+                <h3>Surveys</h3>
 
-export default Survey;
+                <p>patient sees past surveys...</p>
+
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Past Surveys</button>
+
+                <h3>Assessments</h3>
+
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Patient Assessments</button>
+
+                <h3>My Providers</h3>
+
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Patient's Providers</button>
+            </form>
+        );
+    }
+}
