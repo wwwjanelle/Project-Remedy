@@ -18,7 +18,6 @@ const HomePage = ({ }) => {
 
     return (
         <form>
-            <div style={{backgroundImage: {background}, backgroundRepeat:"no-repeat"}}></div>
             <img border = "0" src={image} alt="Remedy" width="64" height="64"/>
             <h3>Home Page</h3>
             <button type="submit" className="btn btn-dark btn-lg btn-block"><a href="/provider">Provider</a></button>
