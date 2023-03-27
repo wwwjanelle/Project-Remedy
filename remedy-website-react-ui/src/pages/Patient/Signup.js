@@ -148,7 +148,7 @@ const Signup = ({setShouldShowSignIn}) => {
 
             <p className="forgot-password text-right">
                 Already registered?: 
-                <Button variant="outlined" onClick={(e) => {e.preventDefault();history("/provider/login"); setShouldShowSignIn(true);}}><b>Log in here</b></Button>
+                <Button variant="outlined" onClick={(e) => {e.preventDefault();history("/patient/login"); setShouldShowSignIn(true);}}><b>Log in here</b></Button>
             </p>
         </form>
     );
