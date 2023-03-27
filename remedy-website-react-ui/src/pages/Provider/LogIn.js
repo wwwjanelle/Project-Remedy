@@ -88,7 +88,7 @@ const LogIn = ({setShouldShowSignIn}) => {
                 </div>
             </div>
 
-            <Button variant="outlined" href="/survey" onClick={doSignIn}><b>Log In</b></Button>
+            <Button variant="outlined" href="/dashboard" onClick={doSignIn}><b>Log In</b></Button>
             <Button variant="outlined" to="/dashboard" onClick={doGoogleSignUp}><b>Sign In with Google</b></Button>
             {/* DOES NOT REDIRECT even with href */}
             <Button variant="outlined" href="/" onClick={() => auth.signOut()}><b>Log Out</b></Button>
