@@ -15,7 +15,7 @@ import ForgetPassword from "./pages/Other/ForgetPassword";
 import Dashboard from './pages/Other/Dashboard';
 
 function App() {
-  return (
+  return ( 
     <Router>
       <div className="App">
         <nav className= "navbar navbar-expand-lg navbar-light fixed-top">
