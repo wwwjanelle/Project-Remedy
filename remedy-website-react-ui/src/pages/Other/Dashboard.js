@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "../../App.css";
 // import { Button } from "@mui/material";
@@ -6,6 +6,8 @@ import "../../App.css";
 
 
 const Dashboard = () => {
+
+    const [email, setEmail] = useState("");
 
     function getData() {
         axios({
@@ -17,9 +19,17 @@ const Dashboard = () => {
     return (
             <form>
             <h3>Dashboard</h3>
-
-            <button type="submit" className="btn btn-dark btn-sm btn-block" onClick={getData}>Send a survey request to a patient</button>
-            <p>^ this is the automated email button</p>
+            <div>
+            <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Patient Email address</label><div>
+                <input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                /></div>
+            </div>
+            <button type="submit" className="btn btn-dark btn-sm btn-block" onClick={getData}>Send survey request</button>
+            </div>
         </form>
     );
 };
