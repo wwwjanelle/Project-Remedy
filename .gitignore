@@ -2,3 +2,4 @@
 remedy-website-react-ui/flaskApp/env
 remedy-website-react-ui/flaskApp/__pycache__
 remedy-website-react-ui/flaskApp/venv/
+/remedy-website-react-ui/flaskApp/credentials.json
