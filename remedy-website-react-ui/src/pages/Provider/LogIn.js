@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import axios from "axios";
 import { Link, useNavigate} from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../../firebase.js';
@@ -52,6 +53,13 @@ const LogIn = ({setShouldShowSignIn}) => {
           setSignUpError(genericError);
         });
     }
+
+    function getSheets() {
+        axios({
+            method: "GET",
+            url:"/Pdash",
+        })
+    }
   
     return (
         <form>
@@ -88,7 +96,7 @@ const LogIn = ({setShouldShowSignIn}) => {
                 </div>
             </div>
 
-            <Button variant="outlined" href="/dashboard" onClick={doSignIn}><b>Log In</b></Button>
+            <Button variant="outlined" href="/dashboard" onClick={doSignIn, getSheets}><b>Log In</b></Button>
             <Button variant="outlined" to="/dashboard" onClick={doGoogleSignUp}><b>Sign In with Google</b></Button>
             {/* DOES NOT REDIRECT even with href */}
             <Button variant="outlined" href="/" onClick={() => auth.signOut()}><b>Log Out</b></Button>

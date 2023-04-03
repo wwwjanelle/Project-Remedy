@@ -16,3 +16,14 @@ To run app:
 - React commands:
     - run `npm start`
     - running `npm i` is to make sure everything needed is installed if you have installation errors
+
+- Installations:
+    - `pip3 install flask`
+    - `pip3 install gingerit`
+    - `pip3 install gspread`
+    - `pip3 install -U pip setuptools wheel`
+    - `pip3 install -U spacy`
+    - `pip3 install spacytextblob`
+    - `python3 -m spacy download en_core_web_sm`
+        <!-- - `python3 -m spacy download en_core_web_lg`
+        - `python3 -m spacy link en_core_web_lg en` -->
