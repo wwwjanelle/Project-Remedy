@@ -1,5 +1,4 @@
-import React from "react";
-import React from "react";
+import React, { Component } from "react";
 import "../../App.css";
 import image from "../../img/trees.jpeg";
 
