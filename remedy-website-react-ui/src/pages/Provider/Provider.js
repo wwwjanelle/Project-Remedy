@@ -31,4 +31,3 @@ export default class Provider extends Component {
     );
 };
 }
-export default Provider;
