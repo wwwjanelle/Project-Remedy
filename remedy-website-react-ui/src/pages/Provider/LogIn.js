@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Link, useNavigate} from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../../firebase.js';
@@ -19,9 +19,11 @@ const LogIn = ({setShouldShowSignIn}) => {
     const [currentUser, setCurrentUser] = useState();
     const [loader, setLoader] = useState(false);
 
+    useEffect(() => {
     auth.onAuthStateChanged((user) => {
        setCurrentUser(user);
-    }); 
+    });
+    },); 
   
   
     const doSignIn = () => {
@@ -59,15 +61,15 @@ const LogIn = ({setShouldShowSignIn}) => {
     return (
         <div className='w-full h-screen flex'>
             <div className='grid grid-cols-1 md:grid-cols-2 m-auto h-[550px] shadow-lg shadow-gray-600 sm:max-w-[900px]'>
-                <div className='w-[550px] h-[550px] hidden md:block'>
-                    <img className='w-full h-full' src={image2} alt="/" />
-                </div>
+            <div className='hidden sm:block'>
+                <img className='w-50 h-50 object-cover' src={image2} alt="Remedy" />
+            </div>
                 <div className='p-4 flex flex-col justify-around'>
                     <form>
                         <h2 className='text-4xl font-bold text-center mb-8'>LOG IN</h2>
                         <div>
                             <div className="form-group">
-                                <input className='border p-2 mr-2' type="text" placeholder='Hospital ID' value={email} onChange={(e) => setHospitalID(e.target.value)}/>
+                                <input className='border p-2 mr-2' type="text" placeholder='Hospital ID' value={hospitalID} onChange={(e) => setHospitalID(e.target.value)}/>
                             </div>
                             <div className="form-group">
                                 <input className='border p-2 mr-2' type="text" placeholder='Username' value={email} onChange={(e) => setEmail(e.target.value)}/>

@@ -5,12 +5,10 @@ import image from "../../img/medanim.gif";
 const HomePage = ({ }) => {
 
     return (
-        <div className="container-side-by-side">
-            <div className="left-image">
-            </div>
-            <div className="right-form"></div>
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
-            
+            <div className='hidden sm:block'>
+                <img className='w-50 h-50 object-cover' src={image} alt="Remedy" />
+            </div>
 
         <div className='bg-gray-100 flex flex-col justify-center'>
             <form className='max-w-[400px] w-full mx-auto bg-white p-4'>
@@ -20,13 +18,7 @@ const HomePage = ({ }) => {
             </form>
         </div>
     </div>
-         {/* <form> <h3>Home Page</h3>
-            <button type="submit" className="btn btn-dark btn-lg btn-block"><a href="/provider">Provider</a></button>
-            <button type="submit" className="btn btn-dark btn-lg btn-block"><a href="/patient">Patient</a></button>
-             <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white'onClick={doSignIn}>Sign In</button>
-        </form>*/}
             
-        </div>
     );
 };
 

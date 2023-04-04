@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   /*background-image: url("../src/img/Background.png");*/
-  background-color:lavender;
+  background-color: coral;
   background-size: 100%;
   background-repeat: no-repeat;
   height: 100vh;
@@ -19,7 +19,6 @@
 }
 
 .App-header {
-  background-color:coral;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

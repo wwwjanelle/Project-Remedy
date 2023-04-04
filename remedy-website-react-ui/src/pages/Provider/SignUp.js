@@ -93,13 +93,66 @@ const SignUp = ({setShouldShowSignIn}) => {
     }
 
     return (
+        <div className='w-full h-screen flex'>
+            <div className='grid grid-cols-1 md:grid-cols-2 m-auto h-[550px] shadow-lg shadow-gray-600 sm:max-w-[900px]'>
+            <div className='hidden sm:block'>
+                <img className='w-50 h-50 object-cover' src={image2} alt="Remedy" />
+            </div>
+                {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
+                {error && <ErrorMessage>Please fill all the fields</ErrorMessage>};
+                <div className='p-4 flex flex-col justify-around'>
+                    <form className="form" onSubmit={handleSubmit}>
+                        <h2 className='text-4xl font-bold text-center mb-8'>REGISTER</h2>
+                        <div>
+                            <div className="form-group">
+                                <input className='border p-3 mr-2' type="text" placeholder='Full Name' value={name} onChange={(e) => setName(e.target.value)}/>
+                            </div>
+                            <div className="form-group">
+                                <input className='border p-3 mr-2' type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            </div>
+                            <div className="form-group">
+                                <input className='border p-3' type="text" placeholder='Hospital ID' value={hospitalID} onChange={(e) => setHospitalID(e.target.value)}/>
+                                </div>
+                            <div className="form-group">
+                                <input className='border p-3' type="text" placeholder='Phone Number' value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)}/>
+                                </div>
+                            <div className="form-group">
+                                <input className='border p-3' type="password" placeholder='Password (at least 6 characters)' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                </div>
+                            <div className="form-group">
+                                <input className='border p-3' type="password" placeholder='Confirm Password' value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}/>
+                                </div>
+                            <div className="form-group">
+                                <div className="custom-control custom checkbox">
+                                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                    <label className="custom-control-label" htmlFor="customCheck1">I agree to the terms and conditions</label>
+                        </div>
+                    </div>
+                            <button
+                                type="submit"
+                                style={{ background: loader ? "#ccc" : " rgb(225, 225, 225)" }}
+                                onClick={doSignUp}
+                                to="/survey">
+                                Sign Up
+                            </button>
+                            <button className='border shadow-lg hover:shadow-xl px-2 py-1 relative flex items-center' to="/dashboard" onClick={doGoogleSignUp}><img border = "0" src={image} alt="Sign In with Google" width="24" height="24"></img></button>
+                            <p className="forgot-password text-right">
+                            Already registered?: 
+                            <Button variant="outlined" href="/provider/login"><b>Log in here</b></Button>
+                </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        /*
         <div className='relative w-full h-screen bg-zinc-900/90'>
-        <img className='absolute w-full h-full object-cover mix-blend-overlay' src={image2} alt="/" />
+            <img className='absolute w-full h-full object-cover mix-blend-overlay' src={image2} alt="/" />
         {signUpError ? <div className="log-sign-error">{signUpError}</div> : <></>}
             {error && <ErrorMessage>Please fill all the fields</ErrorMessage>};
 
         <div className='flex justify items-center h-full'>
-            <form className='max-w-[400px] w-full mx-auto bg-white p-8'onSubmit={handleSubmit}>
+            <form className='max-w-[400px] w-full mx-auto bg-white p-8' onSubmit={handleSubmit}>
                 <h2 className='text-4xl font-bold text-center py-4'>REGISTER</h2>
                 <div className='flex justify-between py-8'> 
                 </div>
@@ -155,7 +208,7 @@ const SignUp = ({setShouldShowSignIn}) => {
             </form>
         </div>
         </div>
-        /*
+        
         <form className="form" onSubmit={handleSubmit}>
             <h3>Provider Registration</h3>
 
