@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../App.css";
 import image from "../../img/trees.jpeg";
 
@@ -27,6 +27,7 @@ export default class Provider extends Component {
 
             </form> */
 
-        );
-    }
+    );
+};
 }
+export default Provider;
