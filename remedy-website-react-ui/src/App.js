@@ -13,15 +13,16 @@ import Signup from "./pages/Patient/Signup";
 import Survey from "./pages/Other/Survey";
 import ForgetPassword from "./pages/Other/ForgetPassword";
 import Dashboard from './pages/Other/Dashboard';
+import image from "../src/img/Remedy-1.jpeg";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <nav className= "navbar navbar-expand-lg navbar-light fixed-top">
+        <nav className= "navbar navbar-expand-lg navbar-light">
           <div className="container">
             <Link className="navbar-brand" to={'/'}>
-              Remedy
+            <img border = "0" src={image} alt="Remedy" width="64" height="64"/>
             </Link>
             <div className="collaspe navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">

@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  /*background-image: url("../src/img/Background.png");*/
+  background-color:lavender;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .App-logo {
@@ -14,7 +19,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color:coral;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,6 +32,7 @@
 .App-link {
   color: #61dafb;
 }
+
 
 @keyframes App-logo-spin {
   from {
