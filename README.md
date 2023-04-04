@@ -1,1 +1,18 @@
 # Project-Remedy
+
+To run app:
+- Have 2 seperate terminals, one for flask and one to run react.
+- You will probably have to install flask the first time you run the app.
+
+- Flask terminal commands:  
+    - delete the current "venv" folder IF you just cloned the repo
+    - run `python3 -m venv venv`
+    - run `source venv/bin/activate`
+    - if you haven't already `pip3 install flask` or however you can install flask
+    - run `flask run`
+        - if it says port 5000 is already in use, quit/close your editor and open it again then run the commands
+    - run `deactivate` to close the virtual environment 
+
+- React commands:
+    - run `npm start`
+    - running `npm i` is to make sure everything needed is installed if you have installation errors

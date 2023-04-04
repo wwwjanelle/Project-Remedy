@@ -1,51 +1,61 @@
-# import os
-# import random
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
+
+
 def automatic_email():
-    # user = input("Enter Your Name >>: ")
-    # email = input("Enter Your Email >>: ")
-    # msg = """\
-    # Hi there
 
-    # This message is a test."""
-    # message = (f"Dear {user}, Did you get this?") 
-    # s = smtplib.SMTP('smtp.gmail.com', 587)
-    # s.starttls()
-    # s.login("SENDER EMAIL", "GOOGLE APP PASSWORD")
-    # s.sendmail('&&&&&&&&&&&', email, message)
-    # # sendmail(sender_email, receiver_email, message)
 
-    sender_email = "FROM"
-    receiver_email = "TO"
-    password = input("Type your password and press enter: ") #GOOGLE APP PASSWORD
+    print("Email Requested!")
+    sender_email = "teamremedy23@gmail.com"
+    receiver_email = "teamremedy23@gmail.com"
+    auth = "mctwgseautxpvjjs"
+
+
+
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = "SUBJECT LINE"
+    message["Subject"] = "Team Remedy Follow Up Survey"
     message["From"] = sender_email
     message["To"] = receiver_email
-    text = """\
-    Hi there
 
-    This message is a test."""
-    html = """?"""
-    part1 = MIMEText(text, "plain")
+
+    html = """\
+    <html>
+    <body>
+        <p>Greetings Patient,<br><br>
+        Please fill out your post appointment survey so that you can help us
+        improve to better cater to your needs and better address your concerns.<br><br>
+        Click the following link to the survey: <a href="https://forms.gle/GjxYh8hmyJ77Yfgw7">Post-Appointment Survey</a><br>
+        Thank you and have a wonderful day!
+        </p>
+    </body>
+    </html>
+    """
+
+
+    # Turn these into plain/html MIMEText objects
+
+
     part2 = MIMEText(html, "html")
-
-    message.attach(part1)
     message.attach(part2)
+
+
+
 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        # has to be 465 to work
-        server.login(sender_email, password)
+        server.login(sender_email, auth)
         server.sendmail(
             sender_email, receiver_email, message.as_string()
         )
+        
+    print("Email Sent!")
 
-    print("Email Sent!") 
+
+
 
 if __name__ == '__main__':
-    automatic_email()
+  automatic_email()

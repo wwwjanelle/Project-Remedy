@@ -4,12 +4,14 @@ import "../../App.css";
 // import { Link } from 'react-router-dom';
 
 export default class Survey extends Component {
-    render() {
+    render() {     
         return (
             <form>
+
+
                 <h3>Survey</h3>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">?..</button>
+                <p>patient sees past surveys...</p>
 
             </form>
         );
