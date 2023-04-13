@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {gapi} from "gapi-script";
+
 
 function SendSurvey() {
   const [data, setData] = useState([]);
