@@ -17,7 +17,7 @@ const [nav, setNav] = useState(false)
            <AiOutlineMenu size={30} />
          </div>
          <h1 className = "classH1">
-           The <span className='span1'>Remedy</span>  
+           The Remedy
          </h1>
         {/* <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2'>
           The <span className='font-bold'>Remedy</span>

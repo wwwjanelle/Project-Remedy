@@ -1,17 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../App.css";
+import image from "../../img/password.gif";
 // import { Button } from "@mui/material";
 // import { Link } from 'react-router-dom';
 
-export default class ForgetPaswword extends Component {
-    render() {
-        return (
-            <form>
-                <h3>Forget Password?</h3>
+const ForgetPassword = () => {
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">haha</button>
+    return (
+        <form>
+            <h3>Forgot your Password?</h3>
+            <div className='hidden sm:block'>
+                <img className='w-50 h-50 object-cover' src={image} alt="LOL" />
+            </div>
+            <button type="submit" className="btn btn-dark btn-sm btn-block">haha</button>
 
-            </form>
-        );
-    }
-}
+        </form>
+    );
+};
+
+export default ForgetPassword;

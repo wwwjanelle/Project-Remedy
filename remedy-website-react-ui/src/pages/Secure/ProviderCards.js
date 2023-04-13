@@ -1,7 +1,7 @@
 import React from 'react';
 import fillForm from "./img/fillForm.jpg" 
 import editForm from "./img/edit.jpeg"
-import SheetData from './SheetData';
+import SheetData from './SendSurvey';
 import { useNavigate, redirect } from 'react-router-dom';
 
 const ProviderCards = () => {

@@ -5,9 +5,7 @@ export default class HomePage extends Component {
         return (
             <form>
                 <h3>Home Page</h3>
-
                 <button type="submit" className="btn btn-dark btn-lg btn-block">Provider</button>
-
                 <button type="submit" className="btn btn-dark btn-lg btn-block">Patient</button>
             </form>
         );
